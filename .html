@@ -1,0 +1,2951 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultanzada Residential Complex</title>
+    <meta name="description" content="Sultanzada Residential Complex - Luxury Living Redefined">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========== CSS RESET & VARIABLES ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Windows 11 Color Palette */
+            --win-bg: #f3f3f3;
+            --win-surface: rgba(255, 255, 255, 0.85);
+            --win-surface-solid: #ffffff;
+            --win-card: rgba(255, 255, 255, 0.7);
+            --win-card-hover: rgba(255, 255, 255, 0.9);
+            --win-border: rgba(0, 0, 0, 0.06);
+            --win-border-strong: rgba(0, 0, 0, 0.12);
+            --win-text: #1a1a1a;
+            --win-text-secondary: #5c5c5c;
+            --win-text-tertiary: #8a8a8a;
+            --win-accent: #0078d4;
+            --win-accent-hover: #1a86d9;
+            --win-accent-light: rgba(0, 120, 212, 0.08);
+            --win-accent-lighter: rgba(0, 120, 212, 0.04);
+            --win-radius: 8px;
+            --win-radius-lg: 12px;
+            --win-radius-xl: 16px;
+            --win-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+            --win-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.14);
+            --win-blur: blur(40px) saturate(180%);
+            --win-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --win-transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Dark mode */
+            --win-bg-dark: #202020;
+            --win-surface-dark: rgba(32, 32, 32, 0.85);
+            --win-surface-solid-dark: #2d2d2d;
+            --win-card-dark: rgba(40, 40, 40, 0.7);
+            --win-text-dark: #ffffff;
+            --win-text-secondary-dark: #cccccc;
+            --win-border-dark: rgba(255, 255, 255, 0.08);
+
+            /* Layout */
+            --taskbar-height: 48px;
+            --nav-height: 64px;
+            --max-width: 1280px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--win-bg);
+            color: var(--win-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: background var(--win-transition), color var(--win-transition);
+        }
+
+        body.dark-mode {
+            background: var(--win-bg-dark);
+            color: var(--win-text-dark);
+        }
+
+        /* RTL Font */
+        [dir="rtl"] body {
+            font-family: 'Vazirmatn', 'Inter', sans-serif;
+        }
+
+        /* ========== WALLPAPER BACKGROUND ========== */
+        .wallpaper-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #e94560 100%);
+            background-size: 400% 400%;
+            animation: wallpaperShift 30s ease infinite;
+        }
+
+        body.dark-mode .wallpaper-bg {
+            background: linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 25%, #0a2647 50%, #2b1055 75%, #1a0000 100%);
+            background-size: 400% 400%;
+            animation: wallpaperShift 30s ease infinite;
+        }
+
+        @keyframes wallpaperShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        /* ========== DESKTOP AREA ========== */
+        .desktop {
+            min-height: 100vh;
+            padding-bottom: var(--taskbar-height);
+        }
+
+        /* ========== TASKBAR (NAVIGATION) ========== */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--taskbar-height);
+            background: rgba(243, 243, 243, 0.8);
+            backdrop-filter: var(--win-blur);
+            -webkit-backdrop-filter: var(--win-blur);
+            border-top: 1px solid var(--win-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: background var(--win-transition);
+        }
+
+        body.dark-mode .taskbar {
+            background: rgba(32, 32, 32, 0.8);
+            border-top-color: var(--win-border-dark);
+        }
+
+        .taskbar-icons {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 100%;
+        }
+
+        .taskbar-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 4px 16px;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: var(--win-text);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background var(--win-transition), transform var(--win-transition);
+            font-size: 0.65rem;
+            font-weight: 500;
+            position: relative;
+            white-space: nowrap;
+            min-width: 64px;
+        }
+
+        body.dark-mode .taskbar-btn {
+            color: var(--win-text-dark);
+        }
+
+        .taskbar-btn:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.dark-mode .taskbar-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .taskbar-btn:active {
+            background: rgba(0, 0, 0, 0.06);
+            transform: scale(0.95);
+        }
+
+        .taskbar-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 3px;
+            background: var(--win-accent);
+            border-radius: 2px;
+        }
+
+        .taskbar-btn svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .taskbar-btn .btn-label {
+            font-size: 0.6rem;
+            line-height: 1;
+            opacity: 0.85;
+        }
+
+        /* Start Button */
+        .start-btn {
+            padding: 4px 12px;
+        }
+
+        .start-btn:hover .windows-logo {
+            transform: scale(1.1);
+        }
+
+        .windows-logo {
+            transition: transform var(--win-transition);
+        }
+
+        /* System Tray */
+        .system-tray {
+            position: absolute;
+            right: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tray-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            color: var(--win-text);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background var(--win-transition);
+        }
+
+        body.dark-mode .tray-btn {
+            color: var(--win-text-dark);
+        }
+
+        .tray-btn:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.dark-mode .tray-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tray-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .system-clock {
+            font-size: 0.7rem;
+            padding: 0 8px;
+            text-align: right;
+            line-height: 1.3;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .system-clock {
+            color: var(--win-text-dark);
+        }
+
+        .clock-time {
+            font-weight: 600;
+        }
+
+        .clock-date {
+            font-size: 0.6rem;
+            opacity: 0.8;
+        }
+
+        /* ========== START MENU ========== */
+        .start-menu {
+            position: fixed;
+            bottom: calc(var(--taskbar-height) + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 600px;
+            max-width: 90vw;
+            max-height: 680px;
+            background: var(--win-surface);
+            backdrop-filter: var(--win-blur);
+            -webkit-backdrop-filter: var(--win-blur);
+            border: 1px solid var(--win-border);
+            border-radius: var(--win-radius-xl);
+            box-shadow: var(--win-shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--win-transition), transform var(--win-transition), visibility var(--win-transition);
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .start-menu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .start-menu-search {
+            padding: 24px 24px 16px;
+        }
+
+        .start-search-input {
+            width: 100%;
+            padding: 8px 16px 8px 40px;
+            border: 1px solid var(--win-border-strong);
+            border-radius: var(--win-radius);
+            background: var(--win-surface-solid);
+            color: var(--win-text);
+            font-size: 0.875rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color var(--win-transition), box-shadow var(--win-transition);
+        }
+
+        body.dark-mode .start-search-input {
+            background: var(--win-surface-solid-dark);
+            border-color: var(--win-border-dark);
+            color: var(--win-text-dark);
+        }
+
+        .start-search-input:focus {
+            border-color: var(--win-accent);
+            box-shadow: 0 0 0 1px var(--win-accent);
+        }
+
+        .start-search-wrapper {
+            position: relative;
+        }
+
+        .start-search-wrapper svg {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: var(--win-text-tertiary);
+        }
+
+        [dir="rtl"] .start-search-wrapper svg {
+            left: auto;
+            right: 12px;
+        }
+
+        .start-menu-section {
+            padding: 0 24px 24px;
+        }
+
+        .start-section-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .start-section-title {
+            color: var(--win-text-dark);
+        }
+
+        .start-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+
+        .start-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 8px;
+            border: none;
+            background: transparent;
+            color: var(--win-text);
+            cursor: pointer;
+            border-radius: var(--win-radius);
+            transition: background var(--win-transition);
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        body.dark-mode .start-nav-item {
+            color: var(--win-text-dark);
+        }
+
+        .start-nav-item:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.dark-mode .start-nav-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .start-nav-item svg {
+            width: 28px;
+            height: 28px;
+            color: var(--win-accent);
+        }
+
+        .start-menu-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--win-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .start-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .start-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--win-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .start-username {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .start-power-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            color: var(--win-text);
+            cursor: pointer;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--win-transition);
+        }
+
+        body.dark-mode .start-power-btn {
+            color: var(--win-text-dark);
+        }
+
+        .start-power-btn:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.dark-mode .start-power-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* ========== WINDOW SECTIONS ========== */
+        .window-section {
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-frame {
+            width: 100%;
+            max-width: var(--max-width);
+            background: var(--win-surface);
+            backdrop-filter: var(--win-blur);
+            -webkit-backdrop-filter: var(--win-blur);
+            border: 1px solid var(--win-border);
+            border-radius: var(--win-radius-xl);
+            box-shadow: var(--win-shadow);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity var(--win-transition-slow), transform var(--win-transition-slow);
+        }
+
+        .window-frame.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Window Title Bar */
+        .window-titlebar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid var(--win-border);
+            user-select: none;
+        }
+
+        body.dark-mode .window-titlebar {
+            background: rgba(40, 40, 40, 0.5);
+            border-bottom-color: var(--win-border-dark);
+        }
+
+        .window-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .window-title {
+            color: var(--win-text-dark);
+        }
+
+        .window-title svg {
+            width: 16px;
+            height: 16px;
+            color: var(--win-accent);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .win-ctrl {
+            width: 32px;
+            height: 28px;
+            border: none;
+            background: transparent;
+            color: var(--win-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background var(--win-transition);
+        }
+
+        body.dark-mode .win-ctrl {
+            color: var(--win-text-dark);
+        }
+
+        .win-ctrl:hover {
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        body.dark-mode .win-ctrl:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .win-ctrl.close:hover {
+            background: #c42b1c;
+            color: white;
+        }
+
+        .win-ctrl svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Window Content */
+        .window-content {
+            padding: 0;
+        }
+
+        /* ========== HERO SECTION ========== */
+        #hero .window-content {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('home.jpg') center/cover;
+            filter: brightness(0.3);
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 48px;
+            max-width: 700px;
+        }
+
+        /* Logo Container - Positioned based on language */
+        .logo-container {
+            margin-bottom: 24px;
+            position: absolute;
+            top: 20px;
+            left: 48px;
+            z-index: 10;
+        }
+
+        [dir="rtl"] .logo-container {
+            left: auto;
+            right: 48px;
+        }
+
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+            animation: logoFadeIn 1s ease forwards;
+        }
+
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title-sub {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--win-accent);
+            color: white;
+            border: none;
+            border-radius: var(--win-radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--win-transition), transform var(--win-transition), box-shadow var(--win-transition);
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            background: var(--win-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--win-radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--win-transition), transform var(--win-transition);
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            position: absolute;
+            right: 48px;
+            bottom: 48px;
+            display: flex;
+            gap: 16px;
+            z-index: 2;
+        }
+
+        [dir="rtl"] .hero-stats {
+            right: auto;
+            left: 48px;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--win-radius-lg);
+            min-width: 100px;
+        }
+
+        .hero-stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Image Side */
+        .hero-image-side {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        [dir="rtl"] .hero-image-side {
+            right: auto;
+            left: 0;
+        }
+
+        .hero-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
+        }
+
+        [dir="rtl"] .hero-image-overlay {
+            background: linear-gradient(-90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
+        }
+
+        /* ========== ABOUT SECTION WITH VIDEO ========== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            padding: 48px;
+            align-items: center;
+        }
+
+        /* Windows 11 Style Video Container */
+        .video-wrapper {
+            position: relative;
+            border-radius: var(--win-radius-lg);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: var(--win-surface-solid);
+            border: 1px solid var(--win-border);
+            box-shadow: var(--win-shadow);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-badge {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            padding: 8px 16px;
+            background: var(--win-accent);
+            color: white;
+            border-radius: var(--win-radius);
+            font-size: 0.8rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+
+        [dir="rtl"] .video-badge {
+            left: auto;
+            right: 16px;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-content h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--win-text);
+            letter-spacing: -0.02em;
+        }
+
+        body.dark-mode .about-content h2 {
+            color: var(--win-text-dark);
+        }
+
+        .about-content .section-subtitle {
+            font-size: 1rem;
+            color: var(--win-accent);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--win-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .about-content p {
+            color: var(--win-text-secondary-dark);
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--win-accent-light);
+            border-radius: var(--win-radius);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .about-feature {
+            color: var(--win-text-dark);
+        }
+
+        .about-feature svg {
+            width: 18px;
+            height: 18px;
+            color: var(--win-accent);
+            flex-shrink: 0;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .services-header {
+            padding: 48px 48px 32px;
+            text-align: center;
+        }
+
+        .services-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--win-text);
+            letter-spacing: -0.02em;
+        }
+
+        body.dark-mode .services-header h2 {
+            color: var(--win-text-dark);
+        }
+
+        .services-header .section-subtitle {
+            font-size: 1rem;
+            color: var(--win-accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .services-header p {
+            color: var(--win-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .services-header p {
+            color: var(--win-text-secondary-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 0 48px 48px;
+        }
+
+        .service-card {
+            padding: 32px 24px;
+            background: var(--win-card);
+            border: 1px solid var(--win-border);
+            border-radius: var(--win-radius-lg);
+            transition: background var(--win-transition), transform var(--win-transition), box-shadow var(--win-transition);
+            cursor: default;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            background: var(--win-card-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--win-shadow);
+        }
+
+        body.dark-mode .service-card {
+            background: var(--win-card-dark);
+            border-color: var(--win-border-dark);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            background: var(--win-accent-light);
+            border-radius: var(--win-radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--win-transition), transform var(--win-transition);
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--win-accent);
+            transform: scale(1.1);
+        }
+
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--win-accent);
+            transition: color var(--win-transition);
+        }
+
+        .service-card:hover .service-icon svg {
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .service-card h3 {
+            color: var(--win-text-dark);
+        }
+
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--win-text-secondary);
+            line-height: 1.6;
+        }
+
+        body.dark-mode .service-card p {
+            color: var(--win-text-secondary-dark);
+        }
+
+        /* ========== GALLERY SECTION ========== */
+        .gallery-header {
+            padding: 48px 48px 32px;
+            text-align: center;
+        }
+
+        .gallery-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--win-text);
+            letter-spacing: -0.02em;
+        }
+
+        body.dark-mode .gallery-header h2 {
+            color: var(--win-text-dark);
+        }
+
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        .gallery-tab {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            color: var(--win-text-secondary);
+            cursor: pointer;
+            border-radius: var(--win-radius);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background var(--win-transition), color var(--win-transition);
+            font-family: inherit;
+        }
+
+        body.dark-mode .gallery-tab {
+            color: var(--win-text-secondary-dark);
+        }
+
+        .gallery-tab:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        body.dark-mode .gallery-tab:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .gallery-tab.active {
+            background: var(--win-accent);
+            color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 8px;
+            padding: 0 48px 48px;
+        }
+
+        .gallery-item {
+            border-radius: var(--win-radius);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform var(--win-transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 1;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--win-transition-slow);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity var(--win-transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-label {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Gallery placeholder colors */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .gp-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .gp-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .gp-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .gp-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .gp-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .gp-6 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .gp-7 { background: linear-gradient(135deg, #fccb90, #d57eeb); }
+        .gp-8 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .contact-info {
+            padding: 48px;
+            background: var(--win-accent);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .contact-info .section-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .contact-info > p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--win-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-detail-content h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .contact-detail-content p {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .contact-detail-content a {
+            color: white;
+            text-decoration: none;
+            transition: opacity var(--win-transition);
+        }
+
+        .contact-detail-content a:hover {
+            opacity: 0.8;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: var(--win-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: background var(--win-transition), border-color var(--win-transition);
+            background: transparent;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            padding: 48px;
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .contact-form-wrapper h3 {
+            color: var(--win-text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--win-text);
+        }
+
+        body.dark-mode .form-label {
+            color: var(--win-text-dark);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--win-border-strong);
+            border-radius: var(--win-radius);
+            background: var(--win-surface-solid);
+            color: var(--win-text);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color var(--win-transition), box-shadow var(--win-transition);
+        }
+
+        body.dark-mode .form-input,
+        body.dark-mode .form-textarea,
+        body.dark-mode .form-select {
+            background: var(--win-surface-solid-dark);
+            border-color: var(--win-border-dark);
+            color: var(--win-text-dark);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: var(--win-accent);
+            box-shadow: 0 0 0 1px var(--win-accent);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 12px 24px;
+            background: var(--win-accent);
+            color: white;
+            border: none;
+            border-radius: var(--win-radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background var(--win-transition), transform var(--win-transition);
+            font-family: inherit;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: var(--win-accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Google Map */
+        .map-container {
+            margin-top: 24px;
+            border-radius: var(--win-radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            display: block;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.9;
+            transition: opacity var(--win-transition);
+        }
+
+        .map-link:hover {
+            opacity: 1;
+        }
+
+        .map-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ========== FOOTER BAR ========== */
+        .footer-bar {
+            padding: 20px 48px;
+            border-top: 1px solid var(--win-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--win-text-tertiary);
+        }
+
+        body.dark-mode .footer-bar {
+            border-top-color: var(--win-border-dark);
+            color: var(--win-text-tertiary);
+        }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--win-transition), visibility var(--win-transition);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--win-transition);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-content {
+            max-width: 80vw;
+            max-height: 80vh;
+            border-radius: var(--win-radius-xl);
+            overflow: hidden;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ========== NOTIFICATION TOAST ========== */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            background: var(--win-surface-solid);
+            border: 1px solid var(--win-border);
+            border-radius: var(--win-radius-lg);
+            box-shadow: var(--win-shadow-lg);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(120%);
+            transition: transform var(--win-transition-slow);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        body.dark-mode .toast {
+            background: var(--win-surface-solid-dark);
+            border-color: var(--win-border-dark);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--win-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast-icon svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+        }
+
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero-image-side {
+                display: none;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-stats {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                left: auto;
+                padding: 24px 48px 48px;
+                flex-wrap: wrap;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 32px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 32px 32px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 160px;
+                padding: 0 32px 32px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --taskbar-height: 56px;
+            }
+
+            .taskbar-btn {
+                min-width: 52px;
+                padding: 4px 8px;
+            }
+
+            .taskbar-btn .btn-label {
+                display: none;
+            }
+
+            .taskbar-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .window-section {
+                padding: 8px;
+            }
+
+            .window-frame {
+                border-radius: var(--win-radius-lg);
+            }
+
+            .window-titlebar {
+                padding: 8px 12px;
+            }
+
+            .hero-container {
+                min-height: 60vh;
+            }
+
+            .hero-content {
+                padding: 40px 24px;
+            }
+
+            .logo-container {
+                top: 10px;
+                left: 24px;
+            }
+
+            [dir="rtl"] .logo-container {
+                left: auto;
+                right: 24px;
+            }
+
+            .logo-container img {
+                max-width: 120px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-stats {
+                padding: 16px 24px 32px;
+                gap: 8px;
+            }
+
+            .hero-stat {
+                padding: 12px 16px;
+                min-width: 80px;
+            }
+
+            .hero-stat-number {
+                font-size: 1.4rem;
+            }
+
+            .about-grid {
+                padding: 24px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .services-header {
+                padding: 32px 24px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 0 24px 24px;
+            }
+
+            .gallery-header {
+                padding: 32px 24px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 140px;
+                padding: 0 24px 24px;
+            }
+
+            .gallery-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .contact-info {
+                padding: 32px 24px;
+            }
+
+            .contact-form-wrapper {
+                padding: 32px 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bar {
+                padding: 16px 24px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .start-menu {
+                width: 95vw;
+            }
+
+            .start-nav-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .system-clock {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+            }
+
+            .hero-stat {
+                width: 100%;
+            }
+
+            .gallery-tabs {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+        .delay-6 { animation-delay: 0.6s; opacity: 0; }
+
+        /* ========== LOADING SCREEN ========== */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #0078d4;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 30px;
+            animation: logoPulse 2s ease infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="logo.png" alt="Sultanzada Residential Complex" class="loading-logo">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Sultanzada Residential Complex</div>
+    </div>
+
+    <!-- Wallpaper Background -->
+    <div class="wallpaper-bg"></div>
+
+    <!-- Desktop Area -->
+    <div class="desktop">
+
+        <!-- ========== HERO SECTION ========== -->
+        <section class="window-section" id="hero">
+            <div class="window-frame" data-section="hero">
+                <div class="window-titlebar">
+                    <div class="window-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <span data-i18n="home">Home</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-ctrl" onclick="minimizeWindow('hero')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl" onclick="maximizeWindow('hero')">
+                            <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl close" onclick="closeWindow('hero')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div class="hero-container">
+                        <div class="hero-bg"></div>
+                        <div class="hero-bg-overlay"></div>
+                        <div class="hero-particles" id="heroParticles"></div>
+
+                        <!-- Logo Container - Positioned in top corner -->
+                        <div class="logo-container">
+                            <img src="logo.png" alt="Sultanzada Residential Complex Logo">
+                        </div>
+
+                        <div class="hero-image-side">
+                            <img src="home.jpg" alt="Sultanzada Residential Complex" id="heroImage">
+                            <div class="hero-image-overlay"></div>
+                        </div>
+
+                        <div class="hero-content">
+                           
+                            <h1 class="hero-title animate-in delay-2" data-i18n="sultanzada">Sultanzada</h1>
+                            <p class="hero-title-sub animate-in delay-3" data-i18n="residentialComplex">Residential Complex</p>
+                            <p class="hero-description animate-in delay-4" data-i18n="heroDesc">Experience luxury living at its finest. A masterpiece of modern architecture designed for those who demand excellence in every detail of their home.</p>
+                            <div class="hero-buttons animate-in delay-5">
+                                <a href="#contact" class="btn-primary">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    <span data-i18n="contactUs">Contact Us</span>
+                                </a>
+                                <a href="#gallery" class="btn-secondary">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                    <span data-i18n="viewGallery">View Gallery</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="hero-stats animate-in delay-6">
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">150+</div>
+                                <div class="hero-stat-label" data-i18n="luxuryUnits">Luxury Units</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">20</div>
+                                <div class="hero-stat-label" data-i18n="floors">Floors</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">5★</div>
+                                <div class="hero-stat-label" data-i18n="amenities">Amenities</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT SECTION WITH VIDEO ========== -->
+        <section class="window-section" id="about">
+            <div class="window-frame" data-section="about">
+                <div class="window-titlebar">
+                    <div class="window-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        <span data-i18n="aboutProject">About Project</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-ctrl" onclick="minimizeWindow('about')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl" onclick="maximizeWindow('about')">
+                            <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl close" onclick="closeWindow('about')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div class="about-grid">
+                        <!-- Windows 11 Style Video Wrapper -->
+                        <div class="video-wrapper">
+                            <video autoplay muted loop playsinline poster="about.jpg">
+                                <source src="sultanzada.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-overlay"></div>
+                            <div class="video-badge" data-i18n="since2024">Since 2024</div>
+                        </div>
+                        <div class="about-content">
+                            <h2 data-i18n="visionModernLiving">A Vision of Modern Living</h2>
+                            <p class="section-subtitle" data-i18n="visionModernLiving">A Vision of Modern Living</p>
+                            <p data-i18n="aboutDesc1">Sultanzada Residential Complex represents the pinnacle of contemporary urban living. Designed by world-renowned architects, every aspect of this project has been carefully crafted to provide an unparalleled living experience.</p>
+                            <p data-i18n="aboutDesc2">Located in a prime area with excellent connectivity, the complex offers breathtaking views, premium amenities, and a lifestyle that redefines comfort and elegance.</p>
+                            <div class="about-features">
+                                <div class="about-feature">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <span data-i18n="smartHome">Smart Home System</span>
+                                </div>
+                                <div class="about-feature">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <span data-i18n="security247">24/7 Security</span>
+                                </div>
+                                <div class="about-feature">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <span data-i18n="landscapedGardens">Landscaped Gardens</span>
+                                </div>
+                                <div class="about-feature">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    <span data-i18n="energyEfficient">Energy Efficient</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SERVICES SECTION ========== -->
+        <section class="window-section" id="services">
+            <div class="window-frame" data-section="services">
+                <div class="window-titlebar">
+                    <div class="window-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span data-i18n="servicesAmenities">Services & Amenities</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-ctrl" onclick="minimizeWindow('services')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl" onclick="maximizeWindow('services')">
+                            <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl close" onclick="closeWindow('services')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div class="services-header">
+                        <h2 data-i18n="premiumServices">Premium Services & Amenities</h2>
+                        <p class="section-subtitle" data-i18n="premiumServices">Premium Services & Amenities</p>
+                        <p data-i18n="servicesDesc">Everything you need for a comfortable and luxurious lifestyle, all within one complex.</p>
+                    </div>
+                    <div class="services-grid">
+                        <!-- Service 1 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                            <h3 data-i18n="luxuryApartments">Luxury Apartments</h3>
+                            <p data-i18n="luxuryApartmentsDesc">Spacious units with premium finishes, floor-to-ceiling windows, and modern layouts designed for comfort.</p>
+                        </div>
+                        <!-- Service 2 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <h3 data-i18n="security247">24/7 Security</h3>
+                            <p data-i18n="security247Desc">Advanced security systems with CCTV surveillance, access control, and professional security staff.</p>
+                        </div>
+                        <!-- Service 3 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                            </div>
+                            <h3 data-i18n="rooftopLounge">Rooftop Lounge</h3>
+                            <p data-i18n="rooftopLoungeDesc">Exclusive rooftop area with panoramic views, perfect for relaxation and entertainment.</p>
+                        </div>
+                        <!-- Service 4 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                            </div>
+                            <h3 data-i18n="smartHome">Smart Home</h3>
+                            <p data-i18n="smartHomeDesc">Integrated smart home technology controlling lighting, climate, and security from your device.</p>
+                        </div>
+                        <!-- Service 5 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </div>
+                            <h3 data-i18n="fitnessCenter">Fitness Center</h3>
+                            <p data-i18n="fitnessCenterDesc">State-of-the-art gym facility with modern equipment, personal trainers, and wellness programs.</p>
+                        </div>
+                        <!-- Service 6 -->
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h3 data-i18n="concierge">Concierge</h3>
+                            <p data-i18n="conciergeDesc">Professional concierge service to assist with daily needs, reservations, and special requests.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- ========== GALLERY SECTION ========== -->
+        <section class="window-section" id="gallery">
+            <div class="window-frame" data-section="gallery">
+                <div class="window-titlebar">
+                    <div class="window-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        <span data-i18n="gallery">Gallery</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-ctrl" onclick="minimizeWindow('gallery')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl" onclick="maximizeWindow('gallery')">
+                            <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl close" onclick="closeWindow('gallery')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div class="gallery-header">
+                        <h2 data-i18n="projectGallery">Project Gallery</h2>
+                    </div>
+                    <div class="gallery-tabs">
+                        <button class="gallery-tab active" data-i18n="all">All</button>
+                        <button class="gallery-tab" data-i18n="exterior">Exterior</button>
+                        <button class="gallery-tab" data-i18n="interior">Interior</button>
+                        <button class="gallery-tab" data-i18n="amenities">Amenities</button>
+                    </div>
+                    <div class="gallery-grid">
+                        <div class="gallery-item large" onclick="openLightbox(this)">
+                            <img src="home.jpg" alt="Main Building View">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="mainBuildingView">Main Building View</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="livingroom.jpg" alt="Living Room">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="livingRoom">Living Room</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="futsal.jpg" alt="Futsal">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label">Futsal Ground</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="bedroom.jpg" alt="Master Bedroom">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="masterBedroom">Master Bedroom</span>
+                            </div>
+                        </div>
+
+			<div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="exterior.jpg" alt="Building Exterior">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="buildingexterior">Building Exterior</span>
+                            </div>
+                        </div>
+
+
+                        <div class="gallery-item wide" onclick="openLightbox(this)">
+                            <img src="garden.jpg" alt="Garden & Landscape">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="gardenLandscape">Garden & Landscape</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="kitchen.png" alt="Kitchen">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="kitchen">Kitchen</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="play.jpg" alt="Fitness Center">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label" data-i18n="fitnessCenter">Fitness Center</span>
+                            </div>
+                        </div>
+
+			<div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="night-view.jpg" alt="Night View">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label">Night View</span>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="parking.jpg" alt="Parking">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label">Parking</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="elevator.jpg" alt="Elevator">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label">Elevator</span>
+                            </div>
+                        </div>
+
+
+			<div class="gallery-item" onclick="openLightbox(this)">
+                            <img src="Street-view.jpg" alt="Street View">
+                            <div class="gallery-item-overlay">
+                                <span class="gallery-item-label">Street View</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========== CONTACT SECTION ========== -->
+        <section class="window-section" id="contact">
+            <div class="window-frame" data-section="contact">
+                <div class="window-titlebar">
+                    <div class="window-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span data-i18n="contactUs">Contact Us</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-ctrl" onclick="minimizeWindow('contact')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl" onclick="maximizeWindow('contact')">
+                            <svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                        <button class="win-ctrl close" onclick="closeWindow('contact')">
+                            <svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h2 data-i18n="getInTouch">Get In Touch</h2>
+                            <p class="section-subtitle" data-i18n="getInTouch">Get In Touch</p>
+                            <p data-i18n="contactDesc">Interested in Sultanzada Residential Complex? Contact our sales team for availability, pricing, and to schedule a visit.</p>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <div class="contact-detail-content">
+                                    <h4 data-i18n="address">Address</h4>
+                                    <p><span data-i18n-en="Azadi Bayan Road, Next to Baghe Zanana Garde, Karte Ariana, Mazar-e Sharif city">Azadi Bayan Road, Next to Baghe Zanana Garde, Karte Ariana, Mazar-e Sharif city</span><br><span data-i18n-fa="جاده آزادی بیان، جوار باغ زنانه کارته آریانا – مزارشریف" style="display:none;font-family:'Vazirmatn',sans-serif">جاده آزادی بیان، جوار باغ زنانه کارته آریانا – مزارشریف</span></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <div class="contact-detail-content">
+                                    <h4 data-i18n="whatsapp">WhatsApp</h4>
+                                    <p><a href="https://wa.me/93780237777" target="_blank">078 023 7777</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </div>
+                                <div class="contact-detail-content">
+                                    <h4 data-i18n="email">Email</h4>
+                                    <p><a href="mailto:sultanzadaresidentialcomplex@gmail.com">sultanzadaresidentialcomplex@gmail.com</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail">
+                                <div class="contact-detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </div>
+                                <div class="contact-detail-content">
+                                    <h4 data-i18n="workingHours">Working Hours</h4>
+                                    <p data-i18n="workingHoursValue">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                                </div>
+                            </div>
+
+                            <!-- Google Maps -->
+                            <div class="map-container">
+                                <iframe src="https://www.google.com/maps?q=36.70525674180313,67.13804367895895&output=embed" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                            <a href="https://www.google.com/maps?q=36.70525674180313,67.13804367895895" target="_blank" class="map-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span data-i18n="viewOnMaps">View on Google Maps</span>
+                            </a>
+
+                            <div class="contact-socials">
+                                <a href="https://instagram.com/sultanzada_residential_complex" target="_blank" class="social-btn" aria-label="Instagram">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=100042131774482" target="_blank" class="social-btn" aria-label="Facebook">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                </a>
+                                <a href="https://wa.me/93780237777" target="_blank" class="social-btn" aria-label="WhatsApp">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-wrapper">
+                            <h3 data-i18n="sendUsMessage">Send Us a Message</h3>
+                            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label" data-i18n="firstName">First Name</label>
+                                        <input type="text" class="form-input" required data-i18n-placeholder="firstNamePlaceholder">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" data-i18n="lastName">Last Name</label>
+                                        <input type="text" class="form-input" required data-i18n-placeholder="lastNamePlaceholder">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-i18n="emailAddress">Email Address</label>
+                                    <input type="email" class="form-input" required placeholder="your@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-i18n="phoneNumber">Phone Number</label>
+                                    <input type="tel" class="form-input" placeholder="+93 78 023 7777">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-i18n="interestedIn">Interested In</label>
+                                    <select class="form-select">
+                                        <option value="" data-i18n="selectOption">Select an option</option>
+                                        <option value="studio" data-i18n="studio">Studio Apartment</option>
+                                        <option value="1bed" data-i18n="oneBedroom">1 Bedroom</option>
+                                        <option value="2bed" data-i18n="twoBedroom">2 Bedroom</option>
+                                        <option value="3bed" data-i18n="threeBedroom">3 Bedroom</option>
+                                        <option value="penthouse" data-i18n="penthouse">Penthouse</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" data-i18n="message">Message</label>
+                                    <textarea class="form-textarea" rows="4" data-i18n-placeholder="messagePlaceholder"></textarea>
+                                </div>
+                                <button type="submit" class="form-submit" data-i18n="sendMessage">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bar">
+                    <span>© 2026 Sultanzada Residential Complex. <span data-i18n="allRightsReserved">All rights reserved.</span></span>
+                    <span data-i18n="designedWithExcellence">Powered By: HashimiHideout</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ========== TASKBAR ========== -->
+    <nav class="taskbar" id="taskbar">
+        <div class="taskbar-icons">
+            <!-- Start Button -->
+            <button class="taskbar-btn start-btn" onclick="toggleStartMenu()" id="startBtn" title="Start">
+                <svg class="windows-logo" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 3h8.5v8.5H3V3zm9.5 0H21v8.5h-8.5V3zM3 12.5h8.5V21H3v-8.5zm9.5 0H21V21h-8.5v-8.5z"/>
+                </svg>
+                <span class="btn-label" data-i18n="start">Start</span>
+            </button>
+
+            <div class="separator" style="width:1px;height:24px;background:var(--win-border);margin:0 4px;"></div>
+
+            <!-- Navigation Buttons -->
+            <button class="taskbar-btn active" onclick="scrollToSection('hero')" data-section="hero" title="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="btn-label" data-i18n="home">Home</span>
+            </button>
+            <button class="taskbar-btn" onclick="scrollToSection('about')" data-section="about" title="About">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span class="btn-label" data-i18n="about">About</span>
+            </button>
+            <button class="taskbar-btn" onclick="scrollToSection('services')" data-section="services" title="Services">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span class="btn-label" data-i18n="services">Services</span>
+            </button>
+            <button class="taskbar-btn" onclick="scrollToSection('gallery')" data-section="gallery" title="Gallery">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <span class="btn-label" data-i18n="gallery">Gallery</span>
+            </button>
+            <button class="taskbar-btn" onclick="scrollToSection('contact')" data-section="contact" title="Contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="btn-label" data-i18n="contact">Contact</span>
+            </button>
+        </div>
+
+        <!-- System Tray -->
+        <div class="system-tray">
+            <!-- Language Toggle -->
+            <button class="tray-btn" onclick="toggleLanguage()" id="langBtn" title="Toggle Language">
+                <span style="font-size:0.7rem;font-weight:700;">EN</span>
+            </button>
+            <!-- Dark Mode Toggle -->
+            <button class="tray-btn" onclick="toggleDarkMode()" id="darkModeBtn" title="Toggle Dark Mode">
+                <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <!-- Clock -->
+            <div class="system-clock" id="systemClock">
+                <div class="clock-time" id="clockTime">12:00</div>
+                <div class="clock-date" id="clockDate">1/1/2024</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== START MENU ========== -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-search">
+            <div class="start-search-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" class="start-search-input" data-i18n-placeholder="searchSections">
+            </div>
+        </div>
+        <div class="start-menu-section">
+            <div class="start-section-title" data-i18n="navigation">Navigation</div>
+            <div class="start-nav-grid">
+                <button class="start-nav-item" onclick="scrollToSection('hero'); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span data-i18n="home">Home</span>
+                </button>
+                <button class="start-nav-item" onclick="scrollToSection('about'); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    <span data-i18n="about">About</span>
+                </button>
+                <button class="start-nav-item" onclick="scrollToSection('services'); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span data-i18n="services">Services</span>
+                </button>
+                <button class="start-nav-item" onclick="scrollToSection('gallery'); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span data-i18n="gallery">Gallery</span>
+                </button>
+                <button class="start-nav-item" onclick="scrollToSection('contact'); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span data-i18n="contact">Contact</span>
+                </button>
+                <button class="start-nav-item" onclick="toggleLanguage(); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span data-i18n="english">English</span>
+                </button>
+                <button class="start-nav-item" onclick="toggleDarkMode(); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <span data-i18n="darkMode">Dark Mode</span>
+                </button>
+                <button class="start-nav-item" onclick="window.scrollTo({top:0,behavior:'smooth'}); toggleStartMenu();">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+                    <span data-i18n="scrollTop">Scroll Top</span>
+                </button>
+            </div>
+        </div>
+        <div class="start-menu-footer">
+            <div class="start-user">
+                <div class="start-avatar">SZ</div>
+                <span class="start-username" data-i18n="sultanzada">Sultanzada</span>
+            </div>
+            <button class="start-power-btn" title="Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="lightbox-content" id="lightboxContent" onclick="event.stopPropagation();"></div>
+    </div>
+
+    <!-- ========== TOAST NOTIFICATION ========== -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span id="toastMessage">Message sent successfully!</span>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                home: "Home",
+                nowAccepting: "Now Accepting Reservations",
+                sultanzada: "Sultanzada",
+                residentialComplex: "Residential Complex",
+                heroDesc: "Experience luxury living at its finest. A masterpiece of modern architecture designed for those who demand excellence in every detail of their home.",
+                contactUs: "Contact Us",
+                viewGallery: "View Gallery",
+                luxuryUnits: "Luxury Units",
+                floors: "Floors",
+                amenities: "Amenities",
+                aboutProject: "About Project",
+                since2024: "Since 2024",
+                visionModernLiving: "A Vision of Modern Living",
+                aboutDesc1: "Sultanzada Residential Complex represents the pinnacle of contemporary urban living. Designed by world-renowned architects, every aspect of this project has been carefully crafted to provide an unparalleled living experience.",
+                aboutDesc2: "Located in a prime area with excellent connectivity, the complex offers breathtaking views, premium amenities, and a lifestyle that redefines comfort and elegance.",
+                smartHome: "Smart Home System",
+                security247: "24/7 Security",
+                landscapedGardens: "Landscaped Gardens",
+                energyEfficient: "Energy Efficient",
+                servicesAmenities: "Services & Amenities",
+                premiumServices: "Premium Services & Amenities",
+                servicesDesc: "Everything you need for a comfortable and luxurious lifestyle, all within one complex.",
+                luxuryApartments: "Luxury Apartments",
+                luxuryApartmentsDesc: "Spacious units with premium finishes, floor-to-ceiling windows, and modern layouts designed for comfort.",
+                security247Desc: "Advanced security systems with CCTV surveillance, access control, and professional security staff.",
+                rooftopLounge: "Rooftop Lounge",
+                rooftopLoungeDesc: "Exclusive rooftop area with panoramic views, perfect for relaxation and entertainment.",
+                smartHomeDesc: "Integrated smart home technology controlling lighting, climate, and security from your device.",
+                fitnessCenter: "Fitness Center",
+                fitnessCenterDesc: "State-of-the-art gym facility with modern equipment, personal trainers, and wellness programs.",
+                concierge: "Concierge",
+                conciergeDesc: "Professional concierge service to assist with daily needs, reservations, and special requests.",
+                gallery: "Gallery",
+                projectGallery: "Project Gallery",
+                all: "All",
+                exterior: "Exterior",
+                interior: "Interior",
+                mainBuildingView: "Main Building View",
+                livingRoom: "Living Room",
+                masterBedroom: "Master Bedroom",
+                gardenLandscape: "Garden & Landscape",
+                kitchen: "Kitchen",
+                getInTouch: "Get In Touch",
+                contactDesc: "Interested in Sultanzada Residential Complex? Contact our sales team for availability, pricing, and to schedule a visit.",
+                address: "Address",
+                whatsapp: "WhatsApp",
+                email: "Email",
+                workingHours: "Working Hours",
+                workingHoursValue: "Mon - Sat: 9:00 AM - 7:00 PM",
+                viewOnMaps: "View on Google Maps",
+                sendUsMessage: "Send Us a Message",
+                firstName: "First Name",
+                firstNamePlaceholder: "Your first name",
+                lastName: "Last Name",
+                lastNamePlaceholder: "Your last name",
+                emailAddress: "Email Address",
+                phoneNumber: "Phone Number",
+                interestedIn: "Interested In",
+                selectOption: "Select an option",
+                studio: "Studio Apartment",
+                oneBedroom: "1 Bedroom",
+                twoBedroom: "2 Bedroom",
+                threeBedroom: "3 Bedroom",
+                penthouse: "Penthouse",
+                message: "Message",
+                messagePlaceholder: "Tell us about your requirements...",
+                sendMessage: "Send Message",
+                allRightsReserved: "All rights reserved.",
+                designedWithExcellence: "Designed with excellence",
+                start: "Start",
+                about: "About",
+                services: "Services",
+                contact: "Contact",
+                navigation: "Navigation",
+                english: "English",
+                darkMode: "Dark Mode",
+                scrollTop: "Scroll Top",
+                searchSections: "Search sections..."
+            },
+            fa: {
+                home: "خانه",
+                nowAccepting: "پذیرش رزرو آغاز شد",
+                sultanzada: "سلطانزاده",
+                residentialComplex: "مجتمع مسکونی",
+                heroDesc: "تجربه زندگی لوکس در بالاترین سطح. شاهکار معماری مدرن طراحی شده برای کسانی که در هر جزئیات خانه خود به دنبال تعالی هستند.",
+                contactUs: "تماس با ما",
+                viewGallery: "مشاهده گالری",
+                luxuryUnits: "واحد لوکس",
+                floors: "طبقه",
+                amenities: "امکانات",
+                aboutProject: "درباره پروژه",
+                since2024: "از ۲۰۲۴",
+                visionModernLiving: "چشم‌انداز زندگی مدرن",
+                aboutDesc1: "مجتمع مسکونی سلطانزاده نمایانگر اوج زندگی شهری معاصر است. طراحی شده توسط معماران مشهور جهانی، هر جنبه از این پروژه با دقت برای ارائه تجربه زندگی بی‌نظیر ساخته شده است.",
+                aboutDesc2: "واقع در منطقه‌ای عالی با دسترسی عالی، این مجتمع مناظر خیره‌کننده، امکانات ممتاز و سبک زندگی را ارائه می‌دهد که راحتی و ظرافت را بازتعریف می‌کند.",
+                smartHome: "سیستم خانه هوشمند",
+                security247: "امنیت ۲۴/۷",
+                landscapedGardens: "باغ‌های منظره‌سازی شده",
+                energyEfficient: "بهینه‌سازی انرژی",
+                servicesAmenities: "خدمات و امکانات",
+                premiumServices: "خدمات و امکانات ممتاز",
+                servicesDesc: "هر آنچه برای یک زندگی راحت و لوکس نیاز دارید، همه در یک مجتمع.",
+                luxuryApartments: "آپارتمان‌های لوکس",
+                luxuryApartmentsDesc: "واحدهای وسیع با پرداخت ممتاز، پنجره‌های سرتاسری و طرح‌های مدرن طراحی شده برای راحتی.",
+                security247Desc: "سیستم‌های امنیتی پیشرفته با نظارت CCTV، کنترل دسترسی و پرسنل امنیتی حرفه‌ای.",
+                rooftopLounge: "لانج پشت‌بام",
+                rooftopLoungeDesc: "منطقه اختصاصی پشت‌بام با مناظر پانوراما، ایده‌آل برای آرامش و سرگرمی.",
+                smartHomeDesc: "فناوری خانه هوشمند یکپارچه برای کنترل نورپردازی، دما و امنیت از دستگاه شما.",
+                fitnessCenter: "مرکز تناسب اندام",
+                fitnessCenterDesc: "مرکز ورزشی مدرن با تجهیزات پیشرفته، مربیان شخصی و برنامه‌های سلامتی.",
+                concierge: "خدمات کنسیرج",
+                conciergeDesc: "خدمات کنسیرج حرفه‌ای برای کمک به نیازهای روزانه، رزروها و درخواست‌های ویژه.",
+                gallery: "گالری",
+                projectGallery: "گالری پروژه",
+                all: "همه",
+                exterior: "نمای بیرونی",
+                interior: "فضای داخلی",
+                mainBuildingView: "نمای ساختمان اصلی",
+                livingRoom: "اتاق نشیمن",
+                masterBedroom: "اتاق خواب اصلی",
+                gardenLandscape: "باغ و منظره",
+                kitchen: "آشپزخانه",
+                getInTouch: "با ما در تماس باشید",
+                contactDesc: "به مجتمع مسکونی سلطانزاده علاقه‌مندید؟ با تیم فروش ما برای دسترسی، قیمت‌گذاری و برنامه‌ریزی بازدید تماس بگیرید.",
+                address: "آدرس",
+                whatsapp: "واتس‌اپ",
+                email: "ایمیل",
+                workingHours: "ساعات کاری",
+                workingHoursValue: "شنبه تا پنجشنبه: ۹:۰۰ - ۱۹:۰۰",
+                viewOnMaps: "مشاهده در گوگل مپ",
+                sendUsMessage: "برای ما پیام بفرستید",
+                firstName: "نام",
+                firstNamePlaceholder: "نام شما",
+                lastName: "نام خانوادگی",
+                lastNamePlaceholder: "نام خانوادگی شما",
+                emailAddress: "آدرس ایمیل",
+                phoneNumber: "شماره تلفن",
+                interestedIn: "علاقه‌مند به",
+                selectOption: "یک گزینه انتخاب کنید",
+                studio: "آپارتمان استودیو",
+                oneBedroom: "۱ اتاق خواب",
+                twoBedroom: "۲ اتاق خواب",
+                threeBedroom: "۳ اتاق خواب",
+                penthouse: "پنت‌هاوس",
+                message: "پیام",
+                messagePlaceholder: "در مورد نیازهای خود به ما بگویید...",
+                sendMessage: "ارسال پیام",
+                allRightsReserved: "تمامی حقوق محفوظ است.",
+                designedWithExcellence: " طراحی شده توسط HashimiHideout ",
+                start: "شروع",
+                about: "درباره",
+                services: "خدمات",
+                contact: "تماس",
+                navigation: "ناوبری",
+                english: "English",
+                darkMode: "حالت تاریک",
+                scrollTop: "بالای صفحه",
+                searchSections: "جستجوی بخش‌ها..."
+            }
+        };
+
+        // ========== GLOBAL STATE ==========
+        let currentLang = 'en';
+        let isDarkMode = false;
+        let startMenuOpen = false;
+
+        // ========== LOADING SCREEN ==========
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+                initAnimations();
+            }, 1500);
+        });
+
+        // ========== CLOCK ==========
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            document.getElementById('clockTime').textContent = timeStr;
+            document.getElementById('clockDate').textContent = dateStr;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // ========== HERO PARTICLES ==========
+        function createParticles() {
+            const container = document.getElementById('heroParticles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ========== SCROLL ANIMATIONS ==========
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        updateActiveNav(entry.target.dataset.section);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '-80px' });
+
+            document.querySelectorAll('.window-frame').forEach(frame => {
+                observer.observe(frame);
+            });
+        }
+
+        function updateActiveNav(sectionId) {
+            document.querySelectorAll('.taskbar-btn[data-section]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.section === sectionId);
+            });
+        }
+
+        // ========== SCROLL TO SECTION ==========
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // ========== START MENU ==========
+        function toggleStartMenu() {
+            startMenuOpen = !startMenuOpen;
+            document.getElementById('startMenu').classList.toggle('open', startMenuOpen);
+        }
+
+        // Close start menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const startMenu = document.getElementById('startMenu');
+            const startBtn = document.getElementById('startBtn');
+            if (startMenuOpen && !startMenu.contains(e.target) && !startBtn.contains(e.target)) {
+                toggleStartMenu();
+            }
+        });
+
+        // ========== WINDOW CONTROLS ==========
+        function minimizeWindow(sectionId) {
+            const frame = document.querySelector(`[data-section="${sectionId}"]`);
+            if (frame) {
+                frame.style.transform = 'scale(0.5) translateY(100px)';
+                frame.style.opacity = '0';
+                setTimeout(() => {
+                    frame.style.transform = '';
+                    frame.style.opacity = '';
+                    frame.classList.add('visible');
+                }, 500);
+            }
+        }
+
+        function maximizeWindow(sectionId) {
+            const frame = document.querySelector(`[data-section="${sectionId}"]`);
+            if (frame) {
+                if (frame.style.maxWidth === '100%') {
+                    frame.style.maxWidth = '';
+                    frame.style.margin = '';
+                } else {
+                    frame.style.maxWidth = '100%';
+                    frame.style.margin = '0';
+                }
+            }
+        }
+
+        function closeWindow(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = '';
+                    section.querySelector('.window-frame').classList.add('visible');
+                }, 1000);
+            }
+        }
+
+        // ========== LANGUAGE TOGGLE ==========
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'fa' : 'en';
+            const html = document.documentElement;
+
+            if (currentLang === 'fa') {
+                html.setAttribute('lang', 'fa');
+                html.setAttribute('dir', 'rtl');
+                document.getElementById('langBtn').querySelector('span').textContent = 'FA';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                document.getElementById('langBtn').querySelector('span').textContent = 'EN';
+            }
+
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+
+            // Update address bilingual display
+            const addressEn = document.querySelector('[data-i18n-en]');
+            const addressFa = document.querySelector('[data-i18n-fa]');
+            if (addressEn && addressFa) {
+                if (currentLang === 'fa') {
+                    addressEn.style.display = 'none';
+                    addressFa.style.display = 'block';
+                } else {
+                    addressEn.style.display = 'block';
+                    addressFa.style.display = 'none';
+                }
+            }
+
+            // Update start menu language button
+            const langBtn = document.querySelector('[data-i18n="english"]');
+            if (langBtn) {
+                langBtn.textContent = currentLang === 'en' ? 'English' : 'فارسی';
+            }
+
+            showToast(currentLang === 'fa' ? 'زبان به فارسی تغییر کرد' : 'Language changed to English');
+        }
+
+        // ========== DARK MODE ==========
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            document.getElementById('moonIcon').style.display = isDarkMode ? 'none' : 'block';
+            document.getElementById('sunIcon').style.display = isDarkMode ? 'block' : 'none';
+        }
+
+        // ========== LIGHTBOX ==========
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            content.innerHTML = '';
+
+            const img = element.querySelector('img');
+            if (img) {
+                const clone = img.cloneNode(true);
+                clone.style.width = '80vw';
+                clone.style.maxWidth = '800px';
+                clone.style.height = '60vh';
+                clone.style.borderRadius = '12px';
+                clone.style.objectFit = 'contain';
+                content.appendChild(clone);
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                if (startMenuOpen) toggleStartMenu();
+            }
+        });
+
+        // ========== GALLERY TABS ==========
+        document.querySelectorAll('.gallery-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // ========== FORM SUBMISSION ==========
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const msg = currentLang === 'fa' ? 'پیام شما با موفقیت ارسال شد!' : 'Message sent successfully!';
+            showToast(msg);
+            e.target.reset();
+        }
+
+        // ========== TOAST ==========
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ========== TASKBAR SCROLL SPY ==========
+        window.addEventListener('scroll', () => {
+            const sections = ['hero', 'about', 'services', 'gallery', 'contact'];
+            const scrollPos = window.scrollY + window.innerHeight / 3;
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && section.offsetTop <= scrollPos) {
+                    updateActiveNav(sections[i]);
+                    break;
+                }
+            }
+        });
+
+        // ========== CONTEXT MENU (Right-click) ==========
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // ========== KEYBOARD SHORTCUTS ==========
+        document.addEventListener('keydown', (e) => {
+            // Alt+1-5 for sections
+            if (e.altKey && e.key >= '1' && e.key <= '5') {
+                const sections = ['hero', 'about', 'services', 'gallery', 'contact'];
+                scrollToSection(sections[parseInt(e.key) - 1]);
+            }
+            // Alt+L for language
+            if (e.altKey && e.key === 'l') {
+                toggleLanguage();
+            }
+            // Alt+D for dark mode
+            if (e.altKey && e.key === 'd') {
+                toggleDarkMode();
+            }
+        });
+
+        // ========== RESPONSIVE HERO IMAGE ==========
+        function handleResize() {
+            const heroImageSide = document.querySelector('.hero-image-side');
+            if (heroImageSide) {
+                heroImageSide.style.display = window.innerWidth > 1024 ? 'block' : 'none';
+            }
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        // ========== SMOOTH SECTION TRANSITIONS ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.window-frame').forEach(frame => {
+            sectionObserver.observe(frame);
+        });
+    </script>
+</body>
+</html>
